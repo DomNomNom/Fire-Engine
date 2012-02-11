@@ -6,6 +6,10 @@ class Entity {
   boolean dead = false;
   
   void update(float dt) {
+    move(dt);
+  }
+
+  void move(float dt) {
     pos.add(PVector.mult(vel, dt));
   }
 
