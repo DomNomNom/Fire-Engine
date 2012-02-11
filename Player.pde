@@ -4,9 +4,4 @@ class Player extends Entity {
     pos = new PVector(x, y);
     vel = new PVector(.0, .0);
   }
-  
-  void draw() {
-    
-  }
-    
 }

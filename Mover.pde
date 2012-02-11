@@ -5,6 +5,6 @@ class Mover extends Entity {
   }
 
   void draw() {
-    rect(pos.x, pos.y, 100, 100);
+    rect(pos.x, pos.y, size.x, size.y);
   }
 }
