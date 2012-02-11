@@ -8,6 +8,7 @@ class Engine {
     player = new Player(100, 200);
     entities = new ArrayList();
     entities.add(player);
+    add_entity(new Mover(100, 100));
     prevTime = millis();
   }
 
