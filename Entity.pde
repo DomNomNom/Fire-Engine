@@ -1,6 +1,6 @@
 class Entity {
   PVector pos;
-  PVector vel;
+  PVector vel  = new PVector(  0,   0);
   PVector size = new PVector(100, 100); 
   
   boolean dead = false;
