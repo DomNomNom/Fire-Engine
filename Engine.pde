@@ -1,14 +1,15 @@
 class Engine {
   Player player;
-  ArrayList entities;
+  ArrayList entities = new ArrayList();
 
   float prevTime;
 
   Engine() {
-    player = new Player(100, 200);
-    entities = new ArrayList();
+    // initial conditions
+    player = new Player(300, 200);
     entities.add(player);
     add_entity(new Mover(100, 100));
+    
     prevTime = millis();
   }
 

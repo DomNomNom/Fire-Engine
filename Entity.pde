@@ -1,5 +1,5 @@
 class Entity {
-  PVector pos;
+  PVector pos  = new PVector(  0,   0);
   PVector vel  = new PVector(  0,   0);
   PVector size = new PVector(100, 100); 
   
@@ -14,6 +14,6 @@ class Entity {
   }
 
   void draw() {
-    ellipse(pos.x, pos.y, size.x, size.y);
+    rect(pos.x, pos.y, size.x, size.y);
   }
 }
