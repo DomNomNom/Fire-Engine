@@ -7,9 +7,10 @@ class Engine {
   Engine() {
     // initial conditions
     player = new Player(300, 200);
-    entities.add(player);
     add_entity(new Mover(100, 100));
-    
+    add_entity(new Mover(250, 200));
+    entities.add(player);    
+
     prevTime = millis();
   }
 
@@ -17,7 +18,9 @@ class Engine {
     float mills = millis();
     float dt = mills - prevTime;
     prevTime = mills;
-
+    
+    Collections.sort(entities); // ensure we are drawing all our stuff from background to foreground
+    
     for (int i=entities.size()-1; i>=0; --i) { // things at the back of the array are more likely to be deleted. Therefore iterate though it in reverse
       Entity e = (Entity) entities.get(i);
       e.update(dt);
