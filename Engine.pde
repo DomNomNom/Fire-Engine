@@ -7,9 +7,9 @@ class Engine {
   Engine() {
     // initial conditions
     player = new Player(300, 200);
-    add_entity(new Mover(100, 100));
-    add_entity(new Mover(250, 200));
-    entities.add(player);    
+    entities.add(player);
+    entities.add(new Mover(100, 100));
+    entities.add(new Mover(250, 200));
 
     prevTime = millis();
   }
@@ -29,10 +29,6 @@ class Engine {
       popStyle(); // ensure no graphical settings are transfered
       if (e.dead) entities.remove(i);
     }
-  }
-  
-  void add_entity(Entity e) {
-    entities.add(e);
   }
 }
 
