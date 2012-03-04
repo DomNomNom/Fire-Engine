@@ -1,4 +1,3 @@
-PVector mousePos;
 Engine game_engine;
 
 void setup() {
@@ -9,7 +8,7 @@ void setup() {
   noStroke();
   
   // ===== init global variables =====
-  mousePos = new PVector(width/2, height/2);
+  input = new Input();
   game_engine = new Engine();
 }
 
@@ -18,7 +17,3 @@ void draw() {
   game_engine.run();
 }
 
-void mouseMoved() {
-  mousePos.x = mouseX;
-  mousePos.y = mouseY;
-}
