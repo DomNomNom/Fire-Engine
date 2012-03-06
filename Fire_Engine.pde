@@ -1,4 +1,4 @@
-Engine game_engine;
+Engine engine;
 
 void setup() {
   // graphics options
@@ -9,11 +9,11 @@ void setup() {
   
   // ===== init global variables =====
   input = new Input();
-  game_engine = new Engine();
+  engine = new Engine();
 }
 
 void draw() {
   background(21); // clear screen
-  game_engine.run();
+  engine.run();
 }
 

@@ -2,10 +2,13 @@ class Engine {
   Player player;
   ArrayList entities = new ArrayList();
 
+  state gameState;
+
   float prevTime;
 
   Engine() {
     // initial conditions
+    loadState(state.menu);
     player = new Player(300, 200);
     entities.add(player);
     entities.add(new Mover(100, 100));
@@ -29,6 +32,19 @@ class Engine {
       popStyle(); // ensure no graphical settings are transfered
       if (e.dead) entities.remove(i);
     }
+  }
+
+  void changeState(state s) { // TODO: safe transitions
+    unloadState();
+    loadState(s);
+    println(s);
+  }
+
+  private void unloadState() {
+  }
+
+  private void loadState(state s) {
+    gameState = s;
   }
 }
 

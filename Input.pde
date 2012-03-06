@@ -22,9 +22,17 @@ void mouseMoved() {
 
 void keyPressed() {
   switch (key) {
-    case 'a':
-      println('a');
+    case 'p': // TODO: safe transitions (eg. from main menu)
+      if (engine.gameState == state.paused)
+        engine.changeState(state.game);
+      else
+        engine.changeState(state.paused);
       break;
+    /*
+    case ' ':
+      engine.player.jump();
+      break;
+    */
     case CODED:
       switch (keyCode) {
         case UP:
