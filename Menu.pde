@@ -5,7 +5,7 @@ class Menu extends Entity {
   }
   
   void draw() {
-    fill(color(200, 40, 40, 50));
+    fill(color(0, 100));
     rect(pos.x, pos.y, size.x, size.y);
   }
 }

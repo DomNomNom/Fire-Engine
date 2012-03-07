@@ -11,7 +11,16 @@ class Entity implements Comparable<Entity> {
   
   layer drawLayer;
   
-  boolean dead = false;
+  boolean dead = false;     // Identifies whether it should be removed
+  boolean updating = true;  // We may not want to update but draw (eg. player] when paused)
+
+  group[] groups = {group.game};
+
+  boolean inGroup(group g) {
+    for (group my_group : groups)
+      if (g == my_group) return true;
+    return false;
+  }
   
   void update(float dt) {
     move(dt);

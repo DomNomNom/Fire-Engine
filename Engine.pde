@@ -13,6 +13,7 @@ class Engine {
     entities.add(player);
     entities.add(new Mover(100, 100));
     entities.add(new Mover(250, 200));
+    entities.add(new Menu());
 
     prevTime = millis();
   }
@@ -24,7 +25,7 @@ class Engine {
     
     Collections.sort(entities); // ensure we are drawing all our stuff from background to foreground
     
-    for (int i=entities.size()-1; i>=0; --i) { // things at the back of the array are more likely to be deleted. Therefore iterate though it in reverse
+    for (int i=entities.size()-1; i>=0; --i) { // We are deleting from the array so iterating backwards makes more sense
       Entity e = (Entity) entities.get(i);
       e.update(dt);
       pushStyle();
@@ -34,17 +35,20 @@ class Engine {
     }
   }
 
-  void changeState(state s) { // TODO: safe transitions
-    unloadState();
-    loadState(s);
-    println(s);
+  void changeState(state changeTo) { // TODO: safe transitions
+    unloadState(changeTo);
+    loadState(changeTo);
+    println(changeTo);
   }
 
-  private void unloadState() {
+  private void unloadState(state changeTo) {
+    switch (changeTo) {
+    //  case  // TODO
+    }
   }
 
-  private void loadState(state s) {
-    gameState = s;
+  private void loadState(state changeTo) {
+    gameState = changeTo;
   }
 }
 
