@@ -1,7 +1,7 @@
-enum layer { // (listed foreground - background)
-  menu,
-  player,
+enum layer { // listed background - foreground
   enemy,
+  player,
+  menu,
 }
 
 enum state {

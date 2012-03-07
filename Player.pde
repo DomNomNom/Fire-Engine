@@ -2,7 +2,7 @@ class Player extends Entity {
   PVector control;
   Player(float x, float y) {
     pos = new PVector(x, y);
-    drawLayer = layer.enemy.ordinal();
+    drawLayer = layer.player;
   }
   
   void draw() {

@@ -1,7 +1,7 @@
 class Menu extends Entity {
   Menu() {
     size = new PVector(width, height);
-    drawLayer = layer.menu.ordinal();
+    drawLayer = layer.menu;
   }
   
   void draw() {

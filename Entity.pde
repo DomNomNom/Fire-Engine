@@ -9,7 +9,7 @@ class Entity implements Comparable<Entity> {
   PVector vel  = new PVector(  0,   0);
   PVector size = new PVector(100, 100);
   
-  int drawLayer;
+  layer drawLayer;
   
   boolean dead = false;
   
@@ -26,6 +26,6 @@ class Entity implements Comparable<Entity> {
   }
   
   int compareTo(Entity e) { // for natural ordering
-    return e.drawLayer - this.drawLayer;
+    return e.drawLayer.ordinal() - this.drawLayer.ordinal();
   }
 }
