@@ -23,10 +23,7 @@ void mouseMoved() {
 void keyPressed() {
   switch (key) {
     case 'p': // TODO: safe transitions (eg. from main menu)
-      if (engine.gameState == state.paused)
-        engine.changeState(state.game);
-      else
-        engine.changeState(state.paused);
+      engine.gameState.changeState(state.paused); // changeState is smart enough to unpause if paused
       break;
     /*
     case ' ':
