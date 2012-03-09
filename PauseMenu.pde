@@ -14,7 +14,12 @@ class PauseMenu extends Entity {
   void draw() {
     fill(color(0, 100));
     rect(pos.x, pos.y, size.x, size.y);
-    rect(0, center.y-centerBarHeight, width, centerBarHeight);
+    rect(0, center.y-centerBarHeight/2, width, centerBarHeight);
+
+    textFont(pauseLabel, 48);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    text("Paused", center.x, center.y);
     // TODO: "Paused" text
   }
 }

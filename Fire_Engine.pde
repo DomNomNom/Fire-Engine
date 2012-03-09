@@ -3,12 +3,13 @@ PVector center; // the center coordinate of the window. just a handy thing to ha
 
 void setup() {
   // graphics options
-  size(500, 500, P2D);
+  size(500, 500);
   smooth();
   fill(200);
   noStroke();
   
   // ===== init global variables =====
+  loadFonts();
   input = new Input();
   engine = new Engine();
   center = new PVector(width/2, height/2);
