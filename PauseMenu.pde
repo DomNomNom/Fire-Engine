@@ -20,6 +20,5 @@ class PauseMenu extends Entity {
     textAlign(CENTER, CENTER);
     fill(255);
     text("Paused", center.x, center.y);
-    // TODO: "Paused" text
   }
 }
