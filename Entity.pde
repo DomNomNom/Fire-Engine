@@ -23,10 +23,11 @@ class Entity implements Comparable<Entity> {
   }
   
   void update(float dt) {
+    // fancy calculation of velocity here
     move(dt);
   }
 
-  void move(float dt) {
+  void move(float dt) { // just adds velocity to position
     pos.add(PVector.mult(vel, dt));
   }
 

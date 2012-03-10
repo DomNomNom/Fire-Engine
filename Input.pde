@@ -1,17 +1,27 @@
 Input input; // this is the global var we are going to use
 
 class Input {
-  PVector mousePos; 
-  PVector control;
-  
-  Input() {
-    mousePos = new PVector(width/2, height/2);
-    control = new PVector(0, 0);
-  }
-  
-  void tick() { // should be called at the end of the game main loop
-    control.x = 0;
-    control.y = 0;
+  PVector mousePos = new PVector(width/2, height/2);
+  PVector control = new PVector(0, 0);
+
+  boolean handleMovementKeys(int keyCode, int pressDir) {
+    switch (keyCode) {
+      case UP:
+        input.control.y -= pressDir;
+        break;
+      case DOWN:
+        input.control.y += pressDir;
+        break;
+      case LEFT:
+        input.control.x -= pressDir;
+        break;
+      case RIGHT:
+        input.control.x += pressDir;
+        break;
+      default:
+        return false;
+    }
+    return true;
   }
 }
 
@@ -22,7 +32,7 @@ void mouseMoved() {
 
 void keyPressed() {
   switch (key) {
-    case 'p': // TODO: safe transitions (eg. from main menu)
+    case 'p':
       engine.gameState.changeState(state.paused); // changeState is smart enough to unpause if paused
       break;
     /*
@@ -31,21 +41,11 @@ void keyPressed() {
       break;
     */
     case CODED:
-      switch (keyCode) {
-        case UP:
-          input.control.x -= 1;
-          break;
-        case DOWN:
-          input.control.x += 1;
-          break;
-        case LEFT:
-          input.control.y -= 1;
-          break;
-        case RIGHT:
-          input.control.y += 1;
-          break;
-      }
-      println("coded");
+      input.handleMovementKeys(keyCode, 1);
       break;
   }
+}
+
+void keyReleased() {
+  input.handleMovementKeys(keyCode, -1);
 }
