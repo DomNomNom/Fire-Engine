@@ -7,6 +7,8 @@ void setup() {
   smooth();
   fill(200);
   noStroke();
+  rectMode(CENTER); // Note: entity.pos is the middle of the object. this will affect collision detection.
+  ellipseMode(CENTER);
   
   // ===== init global variables =====
   loadFonts();
