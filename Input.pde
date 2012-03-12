@@ -16,43 +16,41 @@ class Input {
   String keyValueSeparator = "=>"; // seperates key/values in the .map files
 
   Input() {
-    // TODO: load key bindings from file
     initKeyCodes();
     initKeyMap();
   }
 
   boolean handleMovementKeys(int keyCode, int pressDir) {
     println(keyCode + " " + pressDir);
-         if (keyCode == (Integer)keyMap.get("UP"   )) input.control.y -= pressDir;
-    else if (keyCode == (Integer)keyMap.get("DOWN" )) input.control.y += pressDir;
-    else if (keyCode == (Integer)keyMap.get("LEFT" )) input.control.x -= pressDir;
-    else if (keyCode == (Integer)keyMap.get("RIGHT")) input.control.x += pressDir;
+         if (keyCode == (Integer)keyMap.get("up"   )) control.y -= pressDir;
+    else if (keyCode == (Integer)keyMap.get("down" )) control.y += pressDir;
+    else if (keyCode == (Integer)keyMap.get("left" )) control.x -= pressDir;
+    else if (keyCode == (Integer)keyMap.get("right")) control.x += pressDir;
     else return false;
     return true;
   }
 
   void initKeyMap() {
     keyMap = new HashMap();
-    /* // Arrow keys
-    keyMap.put("UP",    UP   );
-    keyMap.put("DOWN",  DOWN );
-    keyMap.put("LEFT",  LEFT );
-    keyMap.put("RIGHT", RIGHT);
-    */
-    keyMap.put("UP",    keyCodes.get("w"));
-    keyMap.put("DOWN",  keyCodes.get("s"));
-    keyMap.put("LEFT",  keyCodes.get("a"));
-    keyMap.put("RIGHT", keyCodes.get("d"));
+    for (String line : loadStrings("data/keyBindings.map")) {
+      int sepPos = line.indexOf(keyValueSeparator);
+      if (sepPos != -1) { // if it is a valid line
+        keyMap.put(
+          line.substring(0, sepPos),
+          keyCodes.get(line.substring(sepPos+keyValueSeparator.length()))
+        );
+      }
+    }
+    println(keyMap);
   }
 
   void initKeyCodes() {
     keyCodes = new HashMap();
-    String lines[] = loadStrings("data/keyCodes.map");
-    for (String line : lines) {
+    for (String line : loadStrings("data/keyCodes.map")) {
       int sepPos = line.indexOf(keyValueSeparator);
       if (sepPos != -1) { // if it is a valid line
         keyCodes.put(
-          line.substring(0, 1),
+          line.substring(0, sepPos),
           Integer.parseInt(line.substring(sepPos+keyValueSeparator.length()))
         );
       }
