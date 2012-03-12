@@ -45,7 +45,7 @@ class Input {
     keyMap.put("RIGHT", keyCodes.get("d"));
   }
 
-  void initKeyCodes() { // note: you shouldn't need to modify or look at this
+  void initKeyCodes() {
     keyCodes = new HashMap();
     String lines[] = loadStrings("data/keyCodes.map");
     for (String line : lines) {
@@ -57,6 +57,14 @@ class Input {
         );
       }
     }
+
+    // Special keys that can't be put in the file
+    keyCodes.put("UP",      UP    );
+    keyCodes.put("DOWN",    DOWN  );
+    keyCodes.put("LEFT",    LEFT  );
+    keyCodes.put("RIGHT",   RIGHT );
+    keyCodes.put("ENTER",   ENTER );
+    //keyCodes.put("ENTER", RETURN); // mac os
   }
 }
 
