@@ -21,7 +21,7 @@ class Input {
   }
 
   boolean handleMovementKeys(int keyCode, int pressDir) {
-    println(keyCode + " " + pressDir);
+    //println(keyCode + " " + pressDir);
          if (keyCode == (Integer)keyMap.get("up"   )) control.y -= pressDir;
     else if (keyCode == (Integer)keyMap.get("down" )) control.y += pressDir;
     else if (keyCode == (Integer)keyMap.get("left" )) control.x -= pressDir;
@@ -41,7 +41,6 @@ class Input {
         );
       }
     }
-    println(keyMap);
   }
 
   void initKeyCodes() {
