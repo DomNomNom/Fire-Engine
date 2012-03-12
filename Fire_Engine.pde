@@ -9,6 +9,7 @@ void setup() {
   noStroke();
   rectMode(CENTER); // Note: entity.pos is the middle of the object. this will affect collision detection.
   ellipseMode(CENTER);
+  textAlign(CENTER, CENTER);
   
   // ===== init global variables =====
   loadFonts();
