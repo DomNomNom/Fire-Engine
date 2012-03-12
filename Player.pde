@@ -16,17 +16,17 @@ class Player extends Entity {
     vel.normalize();
     vel.mult(movementSpeed);
     move(dt);
+    angle = atan2(input.mousePos.y - pos.y, input.mousePos.x - pos.x);
   }
 
   void draw() {
     fill(color(40, 200, 40));
-    angle = atan2(input.mousePos.y - pos.y, input.mousePos.x - pos.x);
     pushMatrix();
       translate(pos.x, pos.y);
       rotate(angle);
       rect(0, 0, size.x, size.y);
     popMatrix();
     stroke(255, 100);
-    line(pos.x, pos.y, input.mousePos.x, input.mousePos.y);
+    line(pos.x, pos.y, input.mousePos.x, input.mousePos.y); // TODO: disable control when paused
   }
 }
