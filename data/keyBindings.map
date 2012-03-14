@@ -6,6 +6,9 @@ Modify at will.
 comments are just any lines that do not include the seperator (double lined right arrow)
 */
 
+pause=>p
+select=>ENTER
+
 // These 4 binds will be over written by the wasd config as it follow later
 up=>UP
 down=>DOWN

@@ -14,18 +14,40 @@ class Input {
   HashMap keyMap;   // change this
   HashMap keyCodes; // but don't change this
   String keyValueSeparator = "=>"; // seperates key/values in the .map files
+  int currentKey;
 
   Input() {
     initKeyCodes();
     initKeyMap();
   }
 
-  boolean handleMovementKeys(int keyCode, int pressDir) {
+  boolean isEvent(String event) { // small funtion to save the coder some typing
+    return currentKey == (Integer)keyMap.get(event);
+  }
+
+  void handleKeyEvent(int keyCode, int pressDir) {
+    currentKey = keyCode;
+
+    if (! keyMap.containsValue(keyCode)) //return; // ignore keys that aren't in the bindings
+      println("Unboud keyCode: " + keyCode);
+
+    // these want to be tested regardless of whether it is a key up or down event
+    if (handleMovementKeys(pressDir)) return;
+
+    // these are specific to key down events.
+    if (pressDir == 1) { // keyDown event
+      if (isEvent("pause"))
+        engine.gameState.changeState(state.paused); // changeState is smart enough to unpause if paused
+      }
+  }
+
+  // Handles player movement keys. returns true iff the current key is a movement key.
+  boolean handleMovementKeys(int pressDir) {
     //println(keyCode + " " + pressDir);
-         if (keyCode == (Integer)keyMap.get("up"   )) control.y -= pressDir;
-    else if (keyCode == (Integer)keyMap.get("down" )) control.y += pressDir;
-    else if (keyCode == (Integer)keyMap.get("left" )) control.x -= pressDir;
-    else if (keyCode == (Integer)keyMap.get("right")) control.x += pressDir;
+         if (isEvent("up"   )) control.y -= pressDir;
+    else if (isEvent("down" )) control.y += pressDir;
+    else if (isEvent("left" )) control.x -= pressDir;
+    else if (isEvent("right")) control.x += pressDir;
     else return false;
     return true;
   }
@@ -56,13 +78,11 @@ class Input {
     }
 
     // Special keys that can't be put in the file
-    keyCodes.put("UP",      UP    );
+   /* keyCodes.put("UP",      UP    );
     keyCodes.put("DOWN",    DOWN  );
     keyCodes.put("LEFT",    LEFT  );
     keyCodes.put("RIGHT",   RIGHT );
-    keyCodes.put("ENTER",   ENTER );
-    //keyCodes.put("ENTER", RETURN); // mac os
-  }
+  */}
 }
 
 void mouseMoved() {
@@ -70,24 +90,5 @@ void mouseMoved() {
   input.mousePos.y = mouseY;
 }
 
-void keyPressed() {
-  if (! input.handleMovementKeys(keyCode, 1) ) {
-    switch (key) {
-      case 'p':
-        engine.gameState.changeState(state.paused); // changeState is smart enough to unpause if paused
-        break;
-      /*
-      case ' ':
-        engine.player.jump();
-        break;
-      */
-      case CODED:
-
-        break;
-    }
-  }
-}
-
-void keyReleased() {
-  input.handleMovementKeys(keyCode, -1);
-}
+void keyPressed()  { input.handleKeyEvent(keyCode,  1); }
+void keyReleased() { input.handleKeyEvent(keyCode, -1); }
