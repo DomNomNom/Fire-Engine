@@ -1,5 +1,5 @@
 class Player extends Entity {
-  PVector control;
+  PVector target;
 
   float movementSpeed = .2;
 
@@ -7,6 +7,7 @@ class Player extends Entity {
 
   Player(float x, float y) {
     pos = new PVector(x, y);
+    target = new PVector(0,0);
     drawLayer = layer.player;
   }
 
@@ -16,7 +17,10 @@ class Player extends Entity {
     vel.normalize();
     vel.mult(movementSpeed);
     move(dt);
-    angle = atan2(input.mousePos.y - pos.y, input.mousePos.x - pos.x);
+
+    target.x = input.mousePos.x;
+    target.y = input.mousePos.y;
+    angle = atan2(target.y - pos.y, target.x - pos.x);
   }
 
   void draw() {
@@ -27,6 +31,6 @@ class Player extends Entity {
       rect(0, 0, size.x, size.y);
     popMatrix();
     stroke(255, 100);
-    line(pos.x, pos.y, input.mousePos.x, input.mousePos.y); // TODO: disable control when paused
+    line(pos.x, pos.y, target.x, target.y); // TODO: disable control when paused
   }
 }
