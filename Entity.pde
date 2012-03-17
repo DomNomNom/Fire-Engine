@@ -10,6 +10,7 @@ class Entity implements Comparable<Entity> {
   PVector size = new PVector(100, 100);
   
   layer drawLayer;
+  Animation animation;
   
   boolean dead = false;     // Identifies whether it should be removed
   boolean updating = true;  // We may not want to update but draw (eg. player] when paused)

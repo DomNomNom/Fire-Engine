@@ -9,6 +9,7 @@ class Player extends Entity {
     pos = new PVector(x, y);
     target = new PVector(0,0);
     drawLayer = layer.player;
+    animation = new Animation("player");
   }
 
   void update(float dt) {
@@ -28,7 +29,8 @@ class Player extends Entity {
     pushMatrix();
       translate(pos.x, pos.y);
       rotate(angle);
-      rect(0, 0, size.x, size.y);
+      //rect(0, 0, size.x, size.y);
+      animation.draw();
     popMatrix();
     stroke(255, 100);
     line(pos.x, pos.y, target.x, target.y); // TODO: disable control when paused

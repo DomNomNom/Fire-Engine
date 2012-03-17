@@ -3,12 +3,13 @@ PVector center; // the center coordinate of the window. just a handy thing to ha
 
 void setup() {
   // graphics options
-  size(500, 500);
+  size(500, 500, P2D);
   smooth();
   fill(200);
   noStroke();
   rectMode(CENTER); // Note: entity.pos is the middle of the object. this will affect collision detection.
   ellipseMode(CENTER);
+  imageMode(CENTER);
   textAlign(CENTER, CENTER);
   
   // ===== init global variables =====
