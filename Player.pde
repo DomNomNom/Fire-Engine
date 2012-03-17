@@ -22,6 +22,8 @@ class Player extends Entity {
     target.x = input.mousePos.x;
     target.y = input.mousePos.y;
     angle = atan2(target.y - pos.y, target.x - pos.x);
+
+    animation.update(dt);
   }
 
   void draw() {
