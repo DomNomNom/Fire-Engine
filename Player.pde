@@ -9,7 +9,7 @@ class Player extends Entity {
     pos = new PVector(x, y);
     target = new PVector(0,0);
     drawLayer = layer.player;
-    animation = new Animation("player");
+    animation = new Animation("player", 500, true);
   }
 
   void update(float dt) {
