@@ -1,10 +1,11 @@
 class Animation {
   PImage[] images;
 
-  boolean pingpong = false;
+  boolean pingPong = true;
 
   float animationTime;
-  float animationTimeLength = 500; // milliseconds
+  float period = 1000; // milliseconds
+  float frameCount; // same as images.length, just as a float
   int frame;
 
   Animation(String folder) {
@@ -13,14 +14,22 @@ class Animation {
     images = new PImage[fileNames.length];
     for (int i=0; i<fileNames.length; ++i)
       images[i] = loadImage(folder + fileNames[i]);
+    frameCount = images.length;
   }
 
   void update(float dt) {
     animationTime += dt;
-    while (animationTime >= animationTimeLength)
-      animationTime -= animationTimeLength;
-    frame = floor(images.length*animationTime/animationTimeLength);
-    //println(animationTime);
+    while (animationTime >= period) // ensure 0 <= animationTime < period
+      animationTime -= period;
+
+    if (pingPong) { // reverse the animation when passing the middle of the period
+      if (animationTime < period/2)
+        frame = floor(animationTime * 2*(frameCount-1)/period);
+      else
+        frame = 2*(images.length-1) - floor(animationTime * 2*(frameCount-1)/period);
+    }
+    else  // start from the beginning when passing the period
+      frame = floor(frameCount * animationTime/period);
   }
 
   void draw() {
