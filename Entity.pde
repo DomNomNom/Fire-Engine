@@ -33,7 +33,11 @@ class Entity implements Comparable<Entity> {
   }
 
   void draw() {
-    rect(pos.x, pos.y, size.x, size.y);
+    pushMatrix();
+      translate(pos.x, pos.y);
+      rect(0, 0, size.x, size.y);
+      // animation.draw();
+    popMatrix();
   }
   
   int compareTo(Entity e) { // for natural ordering
