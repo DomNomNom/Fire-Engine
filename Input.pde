@@ -11,8 +11,8 @@ class Input {
   PVector mousePos = new PVector(width/2, height/2);
   PVector control = new PVector(0, 0);
 
-  HashMap keyMap;   // change this
-  HashMap keyCodes; // but don't change this
+  HashMap<String, Integer> keyMap;   // maps actions to keycodes (change this at will)
+  HashMap<String, Integer> keyCodes; // maps key litterals to keycodes (don't change this)
   String keyValueSeparator = "=>"; // seperates key/values in the .map files
   int currentKey;
 
@@ -22,7 +22,7 @@ class Input {
   }
 
   boolean isEvent(String event) { // small funtion to save the coder some typing
-    return currentKey == (Integer)keyMap.get(event);
+    return currentKey == keyMap.get(event);
   }
 
   void handleKeyEvent(int keyCode, int pressDir) {
@@ -53,7 +53,7 @@ class Input {
   }
 
   void initKeyMap() {
-    keyMap = new HashMap();
+    keyMap = new HashMap<String, Integer>();
     for (String line : loadStrings("data/keyBindings.map")) {
       int sepPos = line.indexOf(keyValueSeparator);
       if (sepPos != -1) { // if it is a valid line
@@ -66,7 +66,7 @@ class Input {
   }
 
   void initKeyCodes() {
-    keyCodes = new HashMap();
+    keyCodes = new HashMap<String, Integer>();
     for (String line : loadStrings("data/keyCodes.map")) {
       int sepPos = line.indexOf(keyValueSeparator);
       if (sepPos != -1) { // if it is a valid line

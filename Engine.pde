@@ -5,7 +5,8 @@
 
 class Engine {
   Player player;
-  ArrayList entities = new ArrayList();
+  ArrayList<Entity> entities = new ArrayList<Entity>();
+  //HashMap<String, ArrayList> groups; // TODO
 
   GameState gameState = new GameState();
 
@@ -29,7 +30,7 @@ class Engine {
     Collections.sort(entities); // ensure we are drawing all our stuff from background to foreground
 
     for (int i=entities.size()-1; i>=0; --i) { // We are deleting from the array so iterating backwards makes more sense
-      Entity e = (Entity) entities.get(i);
+      Entity e = entities.get(i);
       if (e.updating)
         e.update(dt);
       pushStyle();
@@ -62,7 +63,7 @@ class Engine {
       boolean wasSafe = true;
 
       if (currentState == state.menu) {
-        wasSafe = false; // TODO
+        wasSafe = false; // TODO transitions from the menu.
       }
       else if( currentState == state.paused) {
         if (changeTo == state.paused) // special case: pause toggles back to game
@@ -78,7 +79,7 @@ class Engine {
       else if (currentState == state.game) {
         if (changeTo == state.paused) {
           for (int i : selectGroup(group.game)) // freeze game
-            ((Entity)entities.get(i)).updating = false;
+            (entities.get(i)).updating = false;
           entities.add(new PauseMenu());
         }
         else wasSafe = false;
@@ -93,15 +94,15 @@ class Engine {
   }
 
   int[] selectGroup(group g) { // gets the indexes of all entities that are in a specific group
-    ArrayList selected = new ArrayList();
+    ArrayList<Integer> selected = new ArrayList<Integer>();
     for (int i=0; i<entities.size(); ++i)
-      if (((Entity)entities.get(i)).inGroup(g))
+      if ((entities.get(i)).inGroup(g))
         selected.add(i);
 
     // copy it into a array form (not ArrayList)
     int[] sel = new int[selected.size()];
     for (int i=0; i<selected.size(); ++i)
-      sel[i] = (Integer)selected.get(i);
+      sel[i] = selected.get(i);
     return reverse(sel); // We are giving the list in reverse to avoid problems when deleting elements
   }
 
