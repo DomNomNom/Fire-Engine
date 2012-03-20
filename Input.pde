@@ -90,5 +90,9 @@ void mouseMoved() {
   input.mousePos.y = mouseY;
 }
 
+void mousePressed() {
+  engine.player.shoot();
+}
+
 void keyPressed()  { input.handleKeyEvent(keyCode,  1); }
 void keyReleased() { input.handleKeyEvent(keyCode, -1); }

@@ -12,6 +12,10 @@ class Player extends Entity {
     animation = new Animation("player", 500, true);
   }
 
+  void shoot() {
+    engine.addEntity(new Bullet(pos, angle));
+  }
+
   void update(float dt) {
     vel.x = input.control.x; // deep copy as we don't want to modify input.
     vel.y = input.control.y;

@@ -14,9 +14,9 @@ class Engine {
   Engine() {
     // initial conditions
     player = new Player(300, 200);
-    entities.add(player);
-    entities.add(new Mover(100, 100));
-    entities.add(new Mover(250, 200));
+    addEntity(player);
+    addEntity(new Mover(100, 100));
+    addEntity(new Mover(250, 200));
 
     prevTime = millis();
   }
@@ -25,9 +25,9 @@ class Engine {
     float mills = millis();
     float dt = mills - prevTime;
     prevTime = mills;
-    
+
     Collections.sort(entities); // ensure we are drawing all our stuff from background to foreground
-    
+
     for (int i=entities.size()-1; i>=0; --i) { // We are deleting from the array so iterating backwards makes more sense
       Entity e = (Entity) entities.get(i);
       if (e.updating)
@@ -37,6 +37,11 @@ class Engine {
       popStyle(); // ensure no graphical settings are transfered
       if (e.dead) entities.remove(i);
     }
+  }
+
+  void addEntity(Entity e) {
+    entities.add(e);
+    // TODO: HashMap fun
   }
 
 

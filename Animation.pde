@@ -8,6 +8,13 @@ class Animation {
   float frameCount; // same as images.length, just as a float
   int frame;
 
+  // Constructor for a single-image animation. file specifies the image file in data/images/
+  Animation(String file) {
+    images = new PImage[] { loadImage("/data/images/" + file) };
+    frameCount = images.length;
+  }
+
+  // Constructor for the animation. folder corresponds to a folder containing the images in data/animations/
   Animation(String folder, float period, boolean pingPong) {
     this.pingPong = pingPong;
     this.period = period;

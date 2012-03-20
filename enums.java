@@ -1,5 +1,6 @@
 enum layer { // listed background - foreground
   enemy,
+  bullet,
   player,
   menu,
 }
