@@ -13,11 +13,12 @@ void setup() {
   textAlign(CENTER, CENTER);
   
   // ===== init global variables =====
+  center = new PVector(width/2, height/2);
   loadFonts(); // TODO: move fonts into resources
   resources = new Resources();
   input = new Input();
   engine = new Engine();
-  center = new PVector(width/2, height/2);
+  println(engine.groups);
 }
 
 void draw() {

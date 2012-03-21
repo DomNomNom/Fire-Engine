@@ -15,6 +15,7 @@ enum state {
 // groups that an entity can be in. they are not mutually exclusive.
 enum group {
   game,
+  player,
   menu,
   pauseMenu,
 }

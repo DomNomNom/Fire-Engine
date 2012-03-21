@@ -5,8 +5,8 @@
 
 class Engine {
   Player player;
-  ArrayList<Entity> entities = new ArrayList<Entity>();
-  //HashMap<String, ArrayList> groups; // TODO
+  private ArrayList<Entity> entities = new ArrayList<Entity>();
+  private HashMap<group, ArrayList<Entity>> groups = new HashMap<group, ArrayList<Entity>>();
 
   GameState gameState = new GameState();
 
@@ -42,7 +42,13 @@ class Engine {
 
   void addEntity(Entity e) {
     entities.add(e);
-    // TODO: HashMap fun
+
+    // add the entity to the array lists corresponding to the groups it belongs to
+    for (group g : e.groups) {
+      if (! groups.containsKey(g))
+        groups.put(g, new ArrayList<Entity>());
+      groups.get(g).add(e);
+    }
   }
 
 
@@ -52,6 +58,7 @@ class Engine {
   | It's been moved to a inner class as it is quite a big |
   | chunk of code that is seperate                        |
   \*******************************************************/
+  // TODO: use groups properly.
   class GameState {
 
     state currentState = state.game; // use changeState() which does proper job of changing this with safe transitions
