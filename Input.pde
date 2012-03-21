@@ -76,13 +76,7 @@ class Input {
         );
       }
     }
-
-    // Special keys that can't be put in the file
-   /* keyCodes.put("UP",      UP    );
-    keyCodes.put("DOWN",    DOWN  );
-    keyCodes.put("LEFT",    LEFT  );
-    keyCodes.put("RIGHT",   RIGHT );
-  */}
+  }
 }
 
 void mouseMoved() {

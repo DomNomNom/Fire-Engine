@@ -38,10 +38,9 @@ class Player extends Entity {
     pushMatrix();
       translate(pos.x, pos.y);
       rotate(angle);
-      //rect(0, 0, size.x, size.y);
       animation.draw();
     popMatrix();
     stroke(255, 100);
-    line(pos.x, pos.y, target.x, target.y); // TODO: disable control when paused
+    line(pos.x, pos.y, target.x, target.y);
   }
 }

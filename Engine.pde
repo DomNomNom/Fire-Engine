@@ -57,7 +57,6 @@ class Engine {
   | It's been moved to a inner class as it is quite a big |
   | chunk of code that is seperate                        |
   \*******************************************************/
-  // TODO: use groups properly.
   class GameState {
 
     state currentState = state.game; // use changeState() which does proper job of changing this with safe transitions
