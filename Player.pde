@@ -15,7 +15,8 @@ class Player extends Entity {
   }
 
   void shoot() {
-    engine.addEntity(new Bullet(pos, angle));
+    if (updating)
+      engine.addEntity(new Bullet(pos, angle));
   }
 
   void update(float dt) {

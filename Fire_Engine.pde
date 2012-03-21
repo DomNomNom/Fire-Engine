@@ -22,7 +22,6 @@ void setup() {
 }
 
 void draw() {
-  background(21); // clear screen
+  background(21,100); // clear screen TODO: move this to a entity
   engine.run();
 }
-

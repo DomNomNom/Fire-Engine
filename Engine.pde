@@ -51,7 +51,6 @@ class Engine {
     }
   }
 
-
   /*******************************************************\
   | Handles transitions between game states               |
   |                                                       |
@@ -76,18 +75,16 @@ class Engine {
         if (changeTo == state.paused) // special case: pause toggles back to game
           changeTo = state.game;
         if (changeTo == state.game) {
-          for (int i : selectGroup(group.pauseMenu)) // remove pause menu
-            entities.remove(i);
-          for (int i : selectGroup(group.game)) // unfreeze game
-            ((Entity)entities.get(i)).updating = true;
+          entities.removeAll(groups.get(group.pauseMenu)); // I should probably make a function that uses both this and the next statement
+          groups.remove(group.pauseMenu);
+          for (Entity e : groups.get(group.game)) e.updating = true; // unfreeze game
         }
         else wasSafe = false;
       }
       else if (currentState == state.game) {
         if (changeTo == state.paused) {
-          for (int i : selectGroup(group.game)) // freeze game
-            (entities.get(i)).updating = false;
-          entities.add(new PauseMenu());
+          for (Entity e : groups.get(group.game)) e.updating = false; // freeze game
+          addEntity(new PauseMenu());
         }
         else wasSafe = false;
       }
@@ -99,19 +96,5 @@ class Engine {
         println("OMG, you totally did not just try to change from '" +currentState+ "' to '" +changeTo+ "'. I hate you.");
     }
   }
-
-  int[] selectGroup(group g) { // gets the indexes of all entities that are in a specific group
-    ArrayList<Integer> selected = new ArrayList<Integer>();
-    for (int i=0; i<entities.size(); ++i)
-      if ((entities.get(i)).inGroup(g))
-        selected.add(i);
-
-    // copy it into a array form (not ArrayList)
-    int[] sel = new int[selected.size()];
-    for (int i=0; i<selected.size(); ++i)
-      sel[i] = selected.get(i);
-    return reverse(sel); // We are giving the list in reverse to avoid problems when deleting elements
-  }
-
 }
 

@@ -38,8 +38,6 @@ class Input {
     if (pressDir == 1) { // keyDown event
       if (isEvent("pause"))
         engine.gameState.changeState(state.paused); // changeState is smart enough to unpause if paused
-        
-  println(engine.groups);
       }
   }
 

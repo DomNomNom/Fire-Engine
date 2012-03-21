@@ -3,8 +3,7 @@ class PauseMenu extends Entity {
   float centerBarHeight;
 
   PauseMenu() {
-    groups = new group[1];
-    groups[0] = group.pauseMenu;
+    groups = new group[] {group.pauseMenu};
 
     size = new PVector(width, height);
     drawLayer = layer.menu;
