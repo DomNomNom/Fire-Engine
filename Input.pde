@@ -38,7 +38,13 @@ class Input {
     if (pressDir == 1) { // keyDown event
       if (isEvent("pause"))
         engine.gameState.changeState(state.paused); // changeState is smart enough to unpause if paused
+      else if (isEvent("select")) {
+        if (engine.gameState.currentState == state.menu)
+          engine.gameState.changeState(state.game);
+        else if (engine.gameState.currentState == state.paused)
+          engine.gameState.changeState(state.menu);
       }
+    }
   }
 
   // Handles player movement keys. returns true iff the current key is a movement key.

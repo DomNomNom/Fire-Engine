@@ -13,12 +13,6 @@ class Engine {
   float prevTime;
 
   Engine() {
-    // initial conditions
-    player = new Player(300, 200);
-    addEntity(player);
-    addEntity(new Mover(100, 100));
-    addEntity(new Mover(250, 200));
-
     prevTime = millis();
   }
 
@@ -51,6 +45,12 @@ class Engine {
     }
   }
 
+  // removes all entities that are in the given group.
+  void removeEntityGroup(group g) {
+    entities.removeAll(groups.get(g));
+    groups.remove(g);
+  }
+
   /*******************************************************\
   | Handles transitions between game states               |
   |                                                       |
@@ -59,7 +59,7 @@ class Engine {
   \*******************************************************/
   class GameState {
 
-    state currentState = state.game; // use changeState() which does proper job of changing this with safe transitions
+    state currentState = state.menu; // use changeState() which does proper job of changing this with safe transitions
 
     GameState() { }
 
@@ -68,15 +68,24 @@ class Engine {
       boolean wasSafe = true;
 
       if (currentState == state.menu) {
-        wasSafe = false; // TODO transitions from the menu.
+        if (changeTo == state.game) {
+          player = new Player(300, 200);
+          addEntity(player);
+          addEntity(new Mover(100, 100));
+          addEntity(new Mover(250, 200));
+        }
+        else wasSafe = false;
       }
       else if( currentState == state.paused) {
-        if (changeTo == state.paused) // special case: pause toggles back to game
+        if (changeTo == state.paused) // special case: pausing again toggles back to game
           changeTo = state.game;
         if (changeTo == state.game) {
-          entities.removeAll(groups.get(group.pauseMenu)); // I should probably make a function that uses both this and the next statement
-          groups.remove(group.pauseMenu);
+          removeEntityGroup(group.pauseMenu);
           for (Entity e : groups.get(group.game)) e.updating = true; // unfreeze game
+        }
+        else if (changeTo == state.menu) {
+          removeEntityGroup(group.game);
+          removeEntityGroup(group.pauseMenu);
         }
         else wasSafe = false;
       }

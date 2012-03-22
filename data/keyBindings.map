@@ -7,7 +7,7 @@ comments are just any lines that do not include the seperator (double lined righ
 */
 
 pause=>p
-select=>ENTER
+select=>SPACE
 exit_game=>ESCAPE
 
 // These 4 binds will be over written by the wasd config as it follow later

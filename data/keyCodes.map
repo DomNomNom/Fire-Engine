@@ -8,6 +8,7 @@ comments are just any lines that do not include the seperator (double lined righ
 ENTER=>10
 SHIFT=>16
 ESCAPE=>27
+SPACE=>32
 
 UP=>38
 DOWN=>40
