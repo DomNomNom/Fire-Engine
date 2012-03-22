@@ -9,7 +9,7 @@ class Bullet extends Entity {
     vel.mult(speed);
     this.angle = angle;
     drawLayer = layer.bullet;
-    animation = resources.bullet;
+    animation = resources.animations.get("bullet");
   }
 
   void draw() {

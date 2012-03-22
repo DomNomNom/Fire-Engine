@@ -2,16 +2,14 @@ class Player extends Entity {
   PVector target;
 
   float movementSpeed = .2;
-
   float angle;
-  
 
   Player(float x, float y) {
     pos = new PVector(x, y);
     target = new PVector(0,0);
     groups = new group[] {group.game, group.player};
     drawLayer = layer.player;
-    animation = new Animation("player", 500, true);
+    animation = resources.animations.get("player");
   }
 
   void shoot() {

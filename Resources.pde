@@ -7,10 +7,10 @@
 Resources resources;
 
 class Resources {
-  Animation bullet;
+  HashMap<String, Animation> animations = new HashMap<String, Animation>();
   
   Resources() {
-    bullet = new Animation("bullet.png");
+    animations.put("bullet", new Animation("bullet.png"));
+    animations.put("player", new Animation("player", 500, true));
   }  
-  // TODO: I want resources.animations.bullet
 }

@@ -18,7 +18,6 @@ void setup() {
   resources = new Resources();
   input = new Input();
   engine = new Engine();
-  println(engine.groups);
 }
 
 void draw() {
