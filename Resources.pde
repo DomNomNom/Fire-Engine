@@ -7,10 +7,13 @@
 Resources resources;
 
 class Resources {
-  HashMap<String, Animation> animations = new HashMap<String, Animation>();
+  Map<String, Animation> animations = new HashMap<String, Animation>();
+  Map<String, PFont    > fonts      = new HashMap<String, PFont    >();
   
   Resources() {
     animations.put("bullet", new Animation("bullet.png"));
     animations.put("player", new Animation("player", 500, true));
+    
+    fonts.put("pauseLabel", loadFont("CharterBT-Italic-48.vlw"));
   }  
 }

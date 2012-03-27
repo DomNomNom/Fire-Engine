@@ -91,7 +91,7 @@ void mouseMoved() {
 }
 
 void mousePressed() {
-  engine.player.shoot();
+  if (engine.player != null) engine.player.shoot();
 }
 
 void keyPressed()  { input.handleKeyEvent(keyCode,  1); }

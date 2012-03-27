@@ -7,6 +7,7 @@ enum layer { // listed background - foreground
 
 // States that the game can be in
 enum state {
+  gameInit,
   menu,
   paused,
   game,

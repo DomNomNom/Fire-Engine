@@ -13,6 +13,7 @@ class Engine {
   float prevTime;
 
   Engine() {
+    gameState.changeState(state.menu);
     prevTime = millis();
   }
 
@@ -59,7 +60,7 @@ class Engine {
   \*******************************************************/
   class GameState {
 
-    state currentState = state.menu; // use changeState() which does proper job of changing this with safe transitions
+    state currentState = state.gameInit; // use changeState() which does proper job of changing this with safe transitions
 
     GameState() { }
 
@@ -67,7 +68,13 @@ class Engine {
     void changeState(state changeTo) {
       boolean wasSafe = true;
 
-      if (currentState == state.menu) {
+      if (currentState == state.gameInit) {
+        if (changeTo == state.menu) {
+        ;
+        }
+        else wasSafe = false;
+      }
+      else if (currentState == state.menu) {
         if (changeTo == state.game) {
           player = new Player(300, 200);
           addEntity(player);
@@ -76,7 +83,7 @@ class Engine {
         }
         else wasSafe = false;
       }
-      else if( currentState == state.paused) {
+      else if (currentState == state.paused) {
         if (changeTo == state.paused) // special case: pausing again toggles back to game
           changeTo = state.game;
         if (changeTo == state.game) {

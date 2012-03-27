@@ -15,7 +15,7 @@ class PauseMenu extends Entity {
     rect(center.x, center.y, width, height         );
     rect(center.x, center.y, width, centerBarHeight);
 
-    textFont(pauseLabel, 48);
+    textFont(resources.fonts.get("pauseLabel"), 48);
     fill(250);
     text("Paused", center.x, center.y);
   }
