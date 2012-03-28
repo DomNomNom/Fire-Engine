@@ -14,13 +14,12 @@ void setup() {
   
   // ===== init global variables =====
   center = new PVector(width/2, height/2);
-  loadFonts(); // TODO: move fonts into resources
   resources = new Resources();
   input = new Input();
   engine = new Engine();
 }
 
 void draw() {
-  background(21,100); // clear screen TODO: move this to a entity
+  background(21,10); // clear screen TODO: move this to a entity
   engine.run();
 }

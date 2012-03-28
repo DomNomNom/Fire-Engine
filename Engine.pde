@@ -70,7 +70,7 @@ class Engine {
 
       if (currentState == state.gameInit) {
         if (changeTo == state.menu) {
-        ;
+          addEntity(new Menu());
         }
         else wasSafe = false;
       }
@@ -80,6 +80,7 @@ class Engine {
           addEntity(player);
           addEntity(new Mover(100, 100));
           addEntity(new Mover(250, 200));
+          removeEntityGroup(group.menu);
         }
         else wasSafe = false;
       }
@@ -93,6 +94,7 @@ class Engine {
         else if (changeTo == state.menu) {
           removeEntityGroup(group.game);
           removeEntityGroup(group.pauseMenu);
+          addEntity(new Menu());
         }
         else wasSafe = false;
       }

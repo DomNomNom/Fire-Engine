@@ -14,6 +14,6 @@ class Resources {
     animations.put("bullet", new Animation("bullet.png"));
     animations.put("player", new Animation("player", 500, true));
     
-    fonts.put("pauseLabel", loadFont("CharterBT-Italic-48.vlw"));
+    fonts.put("pauseLabel", loadFont("fonts/CharterBT-Italic-48.vlw"));
   }  
 }
