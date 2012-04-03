@@ -35,8 +35,10 @@ class Entity implements Comparable<Entity> {
   void draw() {
     pushMatrix();
       translate(pos.x, pos.y);
-      rect(0, 0, size.x, size.y);
-      // animation.draw();
+      if (animation == null)
+        rect(0, 0, size.x, size.y);
+      else
+        animation.draw();
     popMatrix();
   }
   
