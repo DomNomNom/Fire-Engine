@@ -1,5 +1,5 @@
-Engine engine;
 PVector center; // the center coordinate of the window. just a handy thing to have around.
+Engine engine;
 
 void setup() {
   // graphics options

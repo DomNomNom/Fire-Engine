@@ -17,6 +17,8 @@ enum state {
 enum group {
   game,
   player,
+  bullet,
+  enemy,
   menu,
   pauseMenu,
 }

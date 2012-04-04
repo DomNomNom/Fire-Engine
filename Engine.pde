@@ -5,6 +5,7 @@
 
 class Engine {
   Player player;
+  Physics physics = new Physics();
   private ArrayList<Entity> entities = new ArrayList<Entity>();
   private HashMap<group, ArrayList<Entity>> groups = new HashMap<group, ArrayList<Entity>>();
 
@@ -13,6 +14,8 @@ class Engine {
   float prevTime;
 
   Engine() {
+    for (group g : group.values()) // have a arraylist for every group
+      groups.put(g, new ArrayList<Entity>());
     gameState.changeState(state.menu);
     prevTime = millis();
   }
@@ -22,34 +25,68 @@ class Engine {
     float dt = mills - prevTime;
     prevTime = mills;
 
+    physics.doCollisions();
+
     Collections.sort(entities); // ensure we are drawing all our stuff from background to foreground
 
     for (int i=entities.size()-1; i>=0; --i) { // We are deleting from the array so iterating backwards makes more sense
       Entity e = entities.get(i);
       if (e.updating)
         e.update(dt);
+      if (e.dead) removeEntity(e);
       pushStyle();
         e.draw();
       popStyle(); // ensure no graphical settings are transfered
-      if (e.dead) entities.remove(i);
     }
+    println(entities);
   }
 
   void addEntity(Entity e) {
     entities.add(e);
 
     // add the entity to the array lists corresponding to the groups it belongs to
-    for (group g : e.groups) {
-      if (! groups.containsKey(g))
-        groups.put(g, new ArrayList<Entity>());
+    for (group g : e.groups)
       groups.get(g).add(e);
-    }
+  }
+
+  void removeEntity(Entity e) {
+    entities.remove(e);
+    // remove the entity from the array lists corresponding to the groups it belongs to
+    for (group g : e.groups)
+      groups.get(g).remove(e);
   }
 
   // removes all entities that are in the given group.
   void removeEntityGroup(group g) {
     entities.removeAll(groups.get(g));
-    groups.remove(g);
+    groups.put(g, new ArrayList<Entity>());
+  }
+
+  /*******************************************************\
+  |          Physics. what do think this does?            |
+  |                                                       |
+  \*******************************************************/
+  class Physics {
+    // if the objects in the corresponding groups collide, then do a certian action
+    Map<group, group> bothDie = new HashMap<group, group>();
+
+    Physics() {
+      bothDie.put(group.bullet, group.enemy);
+    }
+
+    void doCollisions() {
+      for (group g : bothDie.keySet()) {
+        for (Entity a : groups.get(g)) {
+          for (Entity b : groups.get(bothDie.get(g))) {
+            if (a.collidesWith(b)) {
+              a.die();
+              b.die();
+            }
+          }
+        }
+      }
+    }
+
   }
 
   /*******************************************************\

@@ -32,6 +32,18 @@ class Entity implements Comparable<Entity> {
     pos.add(PVector.mult(vel, dt));
   }
 
+  boolean collidesWith(Entity e) {
+    return e.collidesWith(pos);
+  }
+
+  boolean collidesWith(PVector point) {
+    return false;
+  }
+
+  void die() {
+    dead = true; // indicate for removal
+  }
+
   void draw() {
     pushMatrix();
       translate(pos.x, pos.y);
