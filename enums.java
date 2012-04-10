@@ -4,6 +4,7 @@ enum layer { // listed background - foreground
   bullet,
   player,
   menu,
+  invisible,
 }
 
 // States that the game can be in
@@ -21,6 +22,7 @@ enum group {
   player,
   bullet,
   enemy,
+  levelBounds,
   menu,
   pauseMenu,
 }

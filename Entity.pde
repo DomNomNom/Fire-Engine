@@ -45,6 +45,7 @@ class Entity implements Comparable<Entity> {
   }
 
   void draw() {
+    if (drawLayer == layer.invisible) return;
     pushMatrix();
       translate(pos.x, pos.y);
       if (animation == null)

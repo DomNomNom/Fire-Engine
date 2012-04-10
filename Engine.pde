@@ -68,9 +68,11 @@ class Engine {
   class Physics {
     // if the objects in the corresponding groups collide, then do a certian action
     Map<group, group> bothDie = new HashMap<group, group>();
+    Map<group, group> keyDies = new HashMap<group, group>();
 
     Physics() {
       bothDie.put(group.bullet, group.enemy);
+      keyDies.put(group.bullet, group.levelBounds);
     }
 
     void doCollisions() {
@@ -80,6 +82,15 @@ class Engine {
             if (a.collidesWith(b)) {
               a.die();
               b.die();
+            }
+          }
+        }
+      }
+      for (group g : keyDies.keySet()) {
+        for (Entity a : groups.get(g)) {
+          for (Entity b : groups.get(keyDies.get(g))) {
+            if (a.collidesWith(b)) {
+              a.die();
             }
           }
         }
@@ -107,6 +118,7 @@ class Engine {
       if (currentState == state.gameInit) {
         if (changeTo == state.menu) {
           addEntity(new Background());
+          addEntity(new OutOfBounds());
           addEntity(new Menu());
         }
         else wasSafe = false;
