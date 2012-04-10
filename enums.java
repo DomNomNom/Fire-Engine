@@ -1,4 +1,5 @@
 enum layer { // listed background - foreground
+  background,
   enemy,
   bullet,
   player,
@@ -15,6 +16,7 @@ enum state {
 
 // groups that an entity can be in. they are not mutually exclusive.
 enum group {
+  background,
   game,
   player,
   bullet,

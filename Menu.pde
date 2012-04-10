@@ -7,10 +7,6 @@ class Menu extends Entity {
   }
   
   void draw() {
-    // background
-    fill(color(0, 100));
-    rect(center.x, center.y, size.x, size.y);
-
     // game label
     fill(250);
     textFont(resources.fonts.get("pauseLabel"), 48);

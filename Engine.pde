@@ -43,7 +43,6 @@ class Engine {
 
   void addEntity(Entity e) {
     entities.add(e);
-
     // add the entity to the array lists corresponding to the groups it belongs to
     for (group g : e.groups)
       groups.get(g).add(e);
@@ -107,6 +106,7 @@ class Engine {
 
       if (currentState == state.gameInit) {
         if (changeTo == state.menu) {
+          addEntity(new Background());
           addEntity(new Menu());
         }
         else wasSafe = false;

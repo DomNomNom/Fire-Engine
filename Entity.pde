@@ -22,7 +22,7 @@ class Entity implements Comparable<Entity> {
       if (g == my_group) return true;
     return false;
   }
-  
+
   void update(float dt) {
     // fancy calculation of velocity here
     move(dt);
