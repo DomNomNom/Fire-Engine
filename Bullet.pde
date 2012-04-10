@@ -14,10 +14,8 @@ class Bullet extends Entity {
   }
 
   void draw() {
-    pushMatrix();
-      translate(pos.x, pos.y);
-      rotate(angle);
-      animation.draw();
-    popMatrix();
+    translate(pos.x, pos.y);
+    rotate(angle);
+    animation.draw();
   }
 }

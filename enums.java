@@ -1,10 +1,10 @@
-enum layer { // listed background - foreground
-  background,
-  enemy,
-  bullet,
-  player,
+enum layer { // listed foreground - background
+  invisible, // this and any layer listed before this will not be drawn.
   menu,
-  invisible,
+  player,
+  bullet,
+  enemy,
+  background,
 }
 
 // States that the game can be in

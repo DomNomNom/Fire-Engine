@@ -27,16 +27,22 @@ class Engine {
 
     physics.doCollisions();
 
-    Collections.sort(entities); // ensure we are drawing all our stuff from background to foreground
-
+    // update and remove
     for (int i=entities.size()-1; i>=0; --i) { // We are deleting from the array so iterating backwards makes more sense
       Entity e = entities.get(i);
-      if (e.updating)
+      if (e.updating) {
         e.update(dt);
+      }
       if (e.dead) removeEntity(e);
-      pushStyle();
+    }
+
+    // draw
+    Collections.sort(entities); // ensure we are draw background to foreground
+    for (Entity e : entities) {
+      if (e.drawLayer.ordinal() <= layer.invisible.ordinal()) break; // no need to draw invisible stuff
+      pushMatrix(); pushStyle();
         e.draw();
-      popStyle(); // ensure no graphical settings are transfered
+      popStyle(); popMatrix(); // ensure no graphical settings are transfered
     }
     println(entities);
   }
@@ -76,6 +82,10 @@ class Engine {
     }
 
     void doCollisions() {
+      /*
+      these are quite lengthy versions of saying
+      for all in a, if they collide with any of b, do something (kill one of them)
+      */
       for (group g : bothDie.keySet()) {
         for (Entity a : groups.get(g)) {
           for (Entity b : groups.get(bothDie.get(g))) {

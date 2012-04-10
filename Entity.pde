@@ -45,14 +45,11 @@ class Entity implements Comparable<Entity> {
   }
 
   void draw() {
-    if (drawLayer == layer.invisible) return;
-    pushMatrix();
-      translate(pos.x, pos.y);
-      if (animation == null)
-        rect(0, 0, size.x, size.y);
-      else
-        animation.draw();
-    popMatrix();
+    translate(pos.x, pos.y);
+    if (animation == null)
+      rect(0, 0, size.x, size.y);
+    else
+      animation.draw();
   }
   
   int compareTo(Entity e) { // for natural ordering
