@@ -1,6 +1,7 @@
 /****************************************************************\
 | Has the defenition of main game loop and pulls things together |
 |                                                                |
+| Contains two inner classes: Physics and GameState              |
 \****************************************************************/
 
 class Engine {
@@ -49,15 +50,13 @@ class Engine {
 
   void addEntity(Entity e) {
     entities.add(e);
-    // add the entity to the array lists corresponding to the groups it belongs to
-    for (group g : e.groups)
+    for (group g : e.groups) // add the enity to the groups it belongs to
       groups.get(g).add(e);
   }
 
   void removeEntity(Entity e) {
     entities.remove(e);
-    // remove the entity from the array lists corresponding to the groups it belongs to
-    for (group g : e.groups)
+    for (group g : e.groups) // remove the enity from the groups it belongs to
       groups.get(g).remove(e);
   }
 
