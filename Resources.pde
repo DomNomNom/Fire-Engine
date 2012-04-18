@@ -4,16 +4,23 @@
 | Example: Multiple bullets can use the same image |
 \**************************************************/
 
-Resources resources;
-
 class Resources {
-  Map<String, Animation> animations = new HashMap<String, Animation>();
-  Map<String, PFont    > fonts      = new HashMap<String, PFont    >();
+  Map<String, Animation  > animations = new HashMap<String, Animation  >();
+  Map<String, PFont      > fonts      = new HashMap<String, PFont      >();
+  Map<String, AudioPlayer> sounds     = new HashMap<String, AudioPlayer>();
   
   Resources() {
     animations.put("bullet", new Animation("bullet.png"));
     animations.put("player", new Animation("player", 500, true));
-    
+
     fonts.put("pauseLabel", loadFont("fonts/CharterBT-Italic-48.vlw"));
+
+    sounds.put("shot", minim.loadFile("audio/shot.wav"));
+  }
+
+  // stop all audio
+  void stop() {
+    for (AudioPlayer p : sounds.values())
+      p.close();
   }  
 }

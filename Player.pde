@@ -13,8 +13,14 @@ class Player extends Entity {
   }
 
   void shoot() {
-    if (updating)
+    if (updating) {
+      // spawn a bullet
       engine.addEntity(new Bullet(pos, angle));
+
+      // play the shooting sound
+      resources.sounds.get("shot").rewind();
+      resources.sounds.get("shot").play();
+    }
   }
 
   void update(float dt) {

@@ -5,14 +5,14 @@
 \****************************************************************/
 
 class Engine {
+  // entity handling
   Player player;
   Physics physics = new Physics();
   private ArrayList<Entity> entities = new ArrayList<Entity>();
   private HashMap<group, ArrayList<Entity>> groups = new HashMap<group, ArrayList<Entity>>();
+  float prevTime;
 
   GameState gameState = new GameState();
-
-  float prevTime;
 
   Engine() {
     for (group g : group.values()) // have a arraylist for every group
@@ -45,7 +45,7 @@ class Engine {
         e.draw();
       popStyle(); popMatrix(); // ensure no graphical settings are transfered
     }
-    println(entities);
+    //println(entities); // DEBUG
   }
 
   void addEntity(Entity e) {
@@ -65,6 +65,7 @@ class Engine {
     entities.removeAll(groups.get(g));
     groups.put(g, new ArrayList<Entity>());
   }
+
 
   /*******************************************************\
   |          Physics. what do think this does?            |
